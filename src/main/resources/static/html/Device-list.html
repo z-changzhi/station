@@ -53,11 +53,11 @@
 													</select>
 												</div>
 												<div class="layui-input-inline">
-													<select name="contrller">
-														<option>所有市</option>
-														<option>南昌市</option>
+													<select id="station-region" name="region" lay-filter="station-region">
+														<!--<option value="*">所有市</option>-->
+														<!--<option>南昌市</option>
 														<option>抚州市</option>
-														<option>新余市</option>
+														<option>新余市</option>-->
 													</select>
 												</div>
 												<div class="layui-input-inline">
@@ -93,7 +93,7 @@
 												</tr>
 											</thead>
 											<tbody id="device-list">
-												<tr onclick="get_device(1)">
+												<!--<tr onclick="get_device(1)">
 													<td class="id">1</td>
 													<td>除湿机</td>
 													<td>1</td>
@@ -102,9 +102,6 @@
 													<td class="td-status">
 														开机
 														<td class="td-manage">
-															<!--<a onclick="member_stop(this,'10001')" class="layui-btn layui-btn-sm layui-btn-primary" href="javascript:;" title="启用">
-															启用
-														</a>-->
 															<a title="编辑" class="layui-btn layui-btn-xs layui-btn-normal" onclick="x_admin_show('编辑','member-edit.html',600,400)" href="javascript:;">
 																编辑
 															</a>
@@ -123,9 +120,6 @@
 													<td class="td-status">
 														开机
 														<td class="td-manage">
-															<!--<a onclick="member_stop(this,'10001')" class="layui-btn layui-btn-sm layui-btn-primary" href="javascript:;" title="启用">
-															启用
-														</a>-->
 															<a title="编辑" class="layui-btn layui-btn-xs layui-btn-normal" onclick="x_admin_show('编辑','member-edit.html',600,400)" href="javascript:;">
 																编辑
 															</a>
@@ -144,9 +138,6 @@
 													<td class="td-status">
 														开机
 														<td class="td-manage">
-															<!--<a onclick="member_stop(this,'10001')" class="layui-btn layui-btn-sm layui-btn-primary" href="javascript:;" title="启用">
-															启用
-														</a>-->
 															<a title="编辑" class="layui-btn layui-btn-xs layui-btn-normal" onclick="x_admin_show('编辑','member-edit.html',600,400)" href="javascript:;">
 																编辑
 															</a>
@@ -154,7 +145,7 @@
 																删除
 															</a>
 														</td>
-												</tr>
+												</tr>-->
 											</tbody>
 										</table>
 										<div class="page">
@@ -260,7 +251,9 @@
 
 				</div>
 			</div>
-			<script src="../js/manager/device-list.js" "></script>
+			<script src="../js/manager/device-list.js"></script>
+
+		</div>
 	</body>
 
 </html>

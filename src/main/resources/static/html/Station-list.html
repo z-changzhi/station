@@ -46,7 +46,7 @@
 
 									<div class="x-body">
 										<div class="layui-row">
-											<form class="layui-form layui-col-md12 x-so">
+											<form class="layui-form layui-col-md12 x-so" >
 												<div class="layui-input-inline">
 													<select name="province">
 														<option>江西省</option>
@@ -54,12 +54,12 @@
 														<option>河南省</option>
 													</select>
 												</div>
-												<div class="layui-input-inline">
-													<select id="region" name="region" class="valid">
-														<option value="*">查询所有</option>
+												<div  class="layui-input-inline">
+													<select id="station-region" name="region" lay-filter="station-region" >
+														<option value="*">查询1所有</option><!--
 														<option value="南昌市">南昌市</option>
 														<option value="抚州市">抚州市</option>
-														<option value="新余市">新余市</option>
+														<option value="新余市">新余市</option>-->
 													</select>
 												</div>
 												<!--<input type="text" name="username" placeholder="请输入变电站名称" autocomplete="off" class="layui-input">-->
@@ -86,7 +86,7 @@
 												</tr>
 											</thead>
 											<tbody id="station-list">
-												<tr onclick="get_device(1)">
+												<!--<tr onclick="get_device(1)">
 													<td class="id">1</td>
 													<td>220V东湖区变电站</td>
 													<td>东湖区</td>
@@ -94,9 +94,6 @@
 													<td class="td-status">
 														江西省
 														<td class="td-manage">
-															<!--<a onclick="member_stop(this,'10001')" class="layui-btn layui-btn-sm layui-btn-primary" href="javascript:;" title="启用">
-															启用
-														</a>-->
 															<a title="编辑" class="layui-btn layui-btn-xs layui-btn-normal" onclick="x_admin_show('编辑','member-edit.html',600,400)" href="javascript:;">
 																编辑
 															</a>
@@ -114,9 +111,6 @@
 													<td class="td-status">
 														江西省
 														<td class="td-manage">
-															<!--<a onclick="member_stop(this,'10001')" class="layui-btn layui-btn-sm layui-btn-primary" href="javascript:;" title="启用">
-															启用
-														</a>-->
 															<a title="编辑" class="layui-btn layui-btn-xs layui-btn-normal" onclick="x_admin_show('编辑','member-edit.html',600,400)" href="javascript:;">
 																编辑
 															</a>
@@ -134,9 +128,6 @@
 													<td class="td-status">
 														江西省
 														<td class="td-manage">
-															<!--<a onclick="member_stop(this,'10001')" class="layui-btn layui-btn-sm layui-btn-primary" href="javascript:;" title="启用">
-															启用
-														</a>-->
 															<a title="编辑" class="layui-btn layui-btn-xs layui-btn-normal" onclick="x_admin_show('编辑','member-edit.html',600,400)" href="javascript:;">
 																编辑
 															</a>
@@ -144,7 +135,7 @@
 																删除
 															</a>
 														</td>
-												</tr>
+												</tr>-->
 											</tbody>
 										</table>
 										<div class="page">

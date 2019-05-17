@@ -17,8 +17,8 @@ layui.use('laydate', function() {
 // 设备台账 - 变电站管理
 
 //var getRegionMenuUrl = "/station/report/list";
-// 请求下拉列表  TODO 遇到一个回显错误的BUG
-//var getRegionMenuUrl = '/station/region/list';
+// 请求下拉列表   遇到一个回显错误的BUG
+var getRegionMenuUrl = '/station/region/list';
 // 获取:设备列表 用于:表格展示
 //var getDevicelistUrl = "/station/device/list";
 
@@ -36,7 +36,6 @@ get_device(1);
 get_station("*");
 
 // 获取所有的市区 并回显在 下拉菜单上
-//getRegionMenu("江西省");
 
 //监听提交
 //监听提交
@@ -48,7 +47,7 @@ layui.use(['form', 'layer'], function() {
 	form.on('submit(add)', function(data) {
 		$.ajax({
 			url: getStationUrl,
-			type: 'get',
+			type: 'post',
 			data: {
 				//"province": data.field.province,
 				"region": data.field.region
@@ -72,13 +71,44 @@ layui.use(['form', 'layer'], function() {
 		});
 		return false;
 	});
+	
+	
+	getRegionMenu("江西省");
+
+	function getRegionMenu(province) {
+		$.ajax({
+			url: getRegionMenuUrl,
+			type: 'get',
+			cache: false,
+			success: function(data) {
+				if(data.success) {
+					// 将其 append 在下拉菜单上  #region
+					var html = '<option value="*">查询所有</option>';
+					data.bdzlist.map(function(item, index) {
+						html +=
+							'<option value="' + item.region +
+							'">' + item.region + '</option>';
+					});
+					console.log(html);
+					$('#station-region').html(html);
+					/*console.log($('#region'));*/
+					form.render('select');
+				}
+			},
+			error: function(data, error) {
+				layer.alert("获取详情失败", {
+					icon: 2
+				});
+			}
+		});
+	}
 });
 // 默认显示 第一个设备
 
 function get_station(data) {
 	$.ajax({
 		url: getStationUrl,
-		type: 'get',
+		type: 'post',
 		data: {
 			//"province": data.field.province,
 			"region": data
@@ -100,6 +130,7 @@ function get_station(data) {
 			}
 		}
 	});
+	
 }
 
 function setErgodicHtml(data) {
@@ -118,34 +149,6 @@ function setErgodicHtml(data) {
 	console.log(html)
 	$('#station-list').html(html);
 }
-
-/*
-function getRegionMenu(province) {
-	$.ajax({
-		url: getRegionMenuUrl,
-		type: 'get',
-		cache: false,
-		success: function(data) {
-			if(data.success) {
-				// 将其 append 在下拉菜单上  #region
-				var html = "";
-				data.bdzlist.map(function(item, index) {
-					html +=
-						'<option value="' + item.region +
-						'">' + item.region + '</option>';
-				});
-				console.log(html);
-				$('#region').html(html);
-				console.log($('#region'));
-			}
-		},
-		error: function(data, error) {
-			layer.alert("获取详情失败", {
-				icon: 2
-			});
-		}
-	});
-}*/
 
 /*用户-停用*/
 function member_stop(obj, id) {

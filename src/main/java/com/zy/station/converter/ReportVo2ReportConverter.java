@@ -9,6 +9,9 @@ public class ReportVo2ReportConverter {
     public static Report convert(ReportVO2 reportVO2) {
         Report report = new Report();
         report.setDeviceId(reportVO2.getDevice_id());
+
+        report.setStationId(reportVO2.getStation_id());
+
         report.setReportTime(new Date(reportVO2.getTimestamp()));
         report.setSetPower(reportVO2.getPower());
         report.setSetTimer(reportVO2.getTimer());
@@ -23,8 +26,8 @@ public class ReportVo2ReportConverter {
         report.setTempe_4(reportVO2.getTempe_4());
 
         report.setOnload(reportVO2.getOnload());
-        report.setError_0(report.getError_0());
-        report.setError_1(report.getError_1());
+        report.setError_0(reportVO2.getError_0());
+        report.setError_1(reportVO2.getError_1());
         return report;
 
     }

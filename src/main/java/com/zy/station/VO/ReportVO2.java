@@ -19,7 +19,8 @@ public class ReportVO2 {
     @JsonProperty("device_id")
     private Integer device_id;
     /** 设备编号id. */
-
+    @JsonProperty("station_id")
+    private Integer station_id;
     @JsonProperty("timestamp")
     private Integer timestamp;
     /** 上报信息的时间. */

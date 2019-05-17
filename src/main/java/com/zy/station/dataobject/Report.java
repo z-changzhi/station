@@ -15,6 +15,8 @@ public class Report {
     private Integer id;
     /** 上报记录流水号id. */
     private Integer deviceId;
+
+    private Integer stationId;
     /** 设备编号id. */
     private Date reportTime;
     /** 上报信息的时间. */
