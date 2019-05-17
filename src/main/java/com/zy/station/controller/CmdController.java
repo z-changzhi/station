@@ -10,10 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 /**
@@ -47,6 +44,19 @@ public class CmdController {
         //System.out.println(response); // 测试
         return ResultVOUtil.success(response);
     }
+
+    /*@GetMapping("/cmd")
+    public ResultVO listByRegion(@RequestParam("stationId") Integer stationId) {
+        if (stationId==-1){
+            //查找所有
+            byDeviceId = deviceService.findAll();
+        }else {
+            List<Integer> devicelist = new ArrayList<>();
+            devicelist.add(stationId);
+            byDeviceId = deviceService.findByStationIdIn(devicelist);
+        }
+        return ResultVOUtil.success(byDeviceId);
+    }*/
 
     public static String postForJson(String url, CmdDTO cmdDTO) {
         Gson gson = new Gson();// 将对象转换成json用的
