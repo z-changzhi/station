@@ -2,10 +2,10 @@ spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     username: root
-    password: Cz202020
-    #password: zy123456
-    url: jdbc:mysql://47.107.225.243:3306/db_zy?characterEncoding=utf-8&useSSL=false
-    #url: jdbc:mysql://127.0.0.1:3306/dbtest?characterEncoding=utf-8&useSSL=false
+    #password: Cz202020
+    #url: jdbc:mysql://47.107.225.243:3306/db_zy?characterEncoding=utf-8&useSSL=false
+    password: zy123456
+    url: jdbc:mysql://127.0.0.1:3306/db_zy?characterEncoding=utf-8&useSSL=false
     # 不是ssl协议会发出一个警告
   jpa:
     show-sql: true

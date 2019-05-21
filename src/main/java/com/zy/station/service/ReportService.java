@@ -12,4 +12,6 @@ public interface ReportService {
     List<Report> findAll();
     /** 通过设备id 查找设备详情 */
     List<Report> findByDeviceId(List<Integer> ideList);
+    /** 存储设备详情*/
+    Report saveReport(Report report);
 }

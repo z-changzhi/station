@@ -14,7 +14,8 @@ layui.use('laydate', function() {
 // 设备台账 - 变电站管理
 // 设备台账 - 变电站管理
 // 设备台账 - 变电站管理
-
+// 请求 省份 下拉列表   
+var getRegionMenuUrl = '/station/region/list';
 var getReportUrl = "/station/report/list";
 //var getDevicelistUrl = "/station/device/list";
 var getDeviceUrl = "/station/device/listByRegion";
@@ -26,11 +27,14 @@ layui.use(['form', 'layer'], function() {
 	var form = layui.form,
 		layer = layui.layer;
 	form.on('submit(add)', function(data) {
+
+		form.render('select');
 		$.ajax({
 			url: getDeviceUrl,
-			type: 'get',
+			type: 'post',
 			data: {
 				//"province": data.field.province,
+				"region": data.field.region,
 				"stationId": data.field.stationId
 			},
 			dataType: "json",
@@ -52,14 +56,88 @@ layui.use(['form', 'layer'], function() {
 		});
 		return false;
 	});
+
+	form.on('select(station-region)', function(data) {
+		var region = data.value;
+		$.ajax({
+			url: getRegionMenuUrl,
+			type: "get",
+			dataType: "json",
+			success: function(data) {
+				if(data.success) {
+					var html = '<option value="-1">查询所有</option>';
+					data.bdzlist.map(function(item, index) {
+						if(region === item.region) {
+							console.log(region);
+							html += getStationMenu(item.bdz);
+							/*item.map(function(item2,index){
+								html +=
+							'<option value="' + item.region +
+							'">' + item.region + '</option>';
+							}*/
+						}
+					});
+					console.log(html);
+					$('#stationId').html(html);
+					form.render('select');
+				}
+			},
+			error: function(data, error) {
+				layer.alert("查询失败", {
+					icon: 2
+				});
+			}
+		});
+	});
+
+	getRegionMenu("江西省");
+
+	function getRegionMenu(province) {
+		$.ajax({
+			url: getRegionMenuUrl,
+			type: "get",
+			dataType: "json",
+			success: function(data) {
+				if(data.success) {
+					var html = '<option value="*">查询所有</option>';
+					data.bdzlist.map(function(item, index) {
+						html +=
+							'<option value="' + item.region +
+							'">' + item.region + '</option>';
+					});
+					console.log(data);
+					$('#station-region').html(html);
+					form.render('select');
+				}
+			},
+			error: function(data, error) {
+				layer.alert("查询失败", {
+					icon: 2
+				});
+			}
+		});
+	}
+
+	function getStationMenu(data) {
+
+		var html = '';
+		data.map(function(item, index) {
+			html +=
+				'<option value="' + item.id +
+				'">' + item.name + '</option>';
+		});
+		console.log(html);
+
+		return html;
+	}
 });
 
 function get_devices(stationId) {
 	$.ajax({
 		url: getDeviceUrl,
-		type: 'get',
+		type: 'post',
 		data: {
-			//"province": data.field.province,
+			"region": "*",
 			"stationId": stationId
 		},
 		dataType: "json",
@@ -133,15 +211,15 @@ function setReportHtml(data) {
 	//console.log(data.bdzlist);
 	data.map(function(item, index) {
 		date.setTime(item.reportTime);
-		$('#device-report-id').html(item.id+"");
-		$('#device-report-deviceId').html(item.deviceId+"");
-		$('#device-report-reportTime').html(date.toLocaleString()+"");
-		$('#device-report-setPower').html(item.setPower+"");
-		$('#device-report-setTimer').html(item.setTimer+"");
-		$('#device-report-setTempe').html(item.setTempe+"");
-		$('#device-report-setHumid').html(item.setHumid+"");
-		$('#device-report-tempeEnv').html(item.tempeEnv+"");
-		$('#device-report-humidEnv').html(item.humidEnv+"");
+		$('#device-report-id').html(item.id + "");
+		$('#device-report-deviceId').html(item.deviceId + "");
+		$('#device-report-reportTime').html(date.toLocaleString() + "");
+		$('#device-report-setPower').html(item.setPower + "");
+		$('#device-report-setTimer').html(item.setTimer + "");
+		$('#device-report-setTempe').html(item.setTempe + "");
+		$('#device-report-setHumid').html(item.setHumid + "");
+		$('#device-report-tempeEnv').html(item.tempeEnv + "");
+		$('#device-report-humidEnv').html(item.humidEnv + "");
 	});
 
 }
@@ -202,39 +280,36 @@ function delAll(argument) {
 	});
 }
 
-
-
-
-	// 获取设备类型
-	function getType(name) {
-		var type = "";
-		switch(name) {
-			case 1:
-				type = "除湿机";
-				break;
-			case 2:
-				type = "空调";
-				break;
-			default:
-				type = "类型错误";
-				break;
-		}
-		return type;
+// 获取设备类型
+function getType(name) {
+	var type = "";
+	switch(name) {
+		case 1:
+			type = "除湿机";
+			break;
+		case 2:
+			type = "空调";
+			break;
+		default:
+			type = "类型错误";
+			break;
 	}
+	return type;
+}
 
-	// 获取设备状态
-	function getStatus(name) {
-		var type = "";
-		switch(name) {
-			case 0:
-				type = "关机";
-				break;
-			case 1:
-				type = "开机";
-				break;
-			case 2:
-				type = "异常";
-				break;
-		}
-		return type;
+// 获取设备状态
+function getStatus(name) {
+	var type = "";
+	switch(name) {
+		case 0:
+			type = "关机";
+			break;
+		case 1:
+			type = "开机";
+			break;
+		case 2:
+			type = "异常";
+			break;
 	}
+	return type;
+}
