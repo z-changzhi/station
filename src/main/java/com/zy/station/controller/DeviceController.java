@@ -34,6 +34,14 @@ public class DeviceController {
         return ResultVOUtil.success(byDeviceId);
     }
 
+    @GetMapping("/listByStation")
+    public List<Device> devicesByStation(@RequestParam("stationId") Integer stationId){
+        List<Integer> devicelist = new ArrayList<>();
+        devicelist.add(stationId);
+        List<Device> byDeviceId = deviceService.findByStationIdIn(devicelist);
+        return byDeviceId;
+    }
+
     // 参数: 变电站
     // 返回: 设备json
     @PostMapping("/listByRegion")
