@@ -21,6 +21,11 @@ public class ReportServiceImpl implements ReportService{
     }*/
 
     @Override
+    public Report saveReport(Report report) {
+        return  reportRepository.save(report);
+    }
+
+    @Override
     public List<Report> findAll() {
         List<Report> all = reportRepository.findAll();
         return all;

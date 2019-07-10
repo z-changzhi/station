@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>欢迎页面-L-admin1.0</title>
+		<!--<meta http-equiv="refresh" content="10">-->
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" href="../css/font.css">
+		<link rel="stylesheet" href="../css/xadmin.css">
+
+		<script src="../js/jquery.min.js"></script>
+		<script type="text/javascript" src="../lib/layui/layui.js" charset="utf-8"></script>
+		<script type="text/javascript" src="../js/xadmin.js"></script>
+
+		<script src="../js/manager/tab.js"></script>
+		<script src="../js/common/common.js"></script>
+		<script src="../js/highcharts/highcharts.js"></script>
+		<script src="../js/manager/tab-cmd.js"></script>
+		
+		<!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+		<!--[if lt IE 9]>
+	    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+	    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    	<![endif]-->
+	</head>
+
+	<body class="form-wrap">
+
+		<div class="layui-fluid" id="component-tabs">
+			<div class="layui-row">
+				<div class="layui-col-md12">
+
+					<div class="layui-card">
+						<div class="layui-card-header">--</div>
+						<div class="layui-card-body">
+							<div class="layui-tab layui-tab-brief" lay-filter="component-tabs-brief">
+								<ul class="layui-tab-title">
+									<li class="layui-this">空调信息</li>
+									<li>温湿度</li>
+									<li>除湿机</li>
+									<li>采集端</li>
+									<li>变电站信息</li>
+									<li>历史故障</li>
+								</ul>
+								<div class="layui-tab-content">
+									<!--空调-->
+									<div class="layui-tab-item layui-show">
+										<div id="kongtiao" class="layui-row">
+										</div>
+									</div>
+									<!--温度曲线-->
+									<div class="layui-tab-item">
+										<div id="container" style="min-width:650px;height:650px"></div>
+									</div>
+									<!--除湿机-->
+									<div class="layui-tab-item">
+										<div id="chushiji" class="layui-row">
+
+										</div>
+									</div>
+									<!--采集端 回显 保存-->
+									<div class="layui-tab-item">
+										<div class="x-body">
+											<div class="layui-form-item">
+												<label for="username" class="layui-form-label">
+										                <span class="x-red">*</span>变电站Id
+										            </label>
+												<div class="layui-input-inline">
+													<input type="text" id="collectror-id" value="" name="id" disabled="disabled" lay-verify="id" autocomplete="off" class="layui-input">
+												</div>
+											</div>
+											<div class="layui-form-item">
+												<label for="username" class="layui-form-label">
+										                <span class="x-red">*</span>IP地址
+										            </label>
+												<div class="layui-input-inline">
+													<input type="text" id="collectror-ip" value="" name="ip" required lay-verify="ip" autocomplete="off" class="layui-input">
+												</div>
+											</div>
+											<div class="layui-form-item">
+												<label for="username" class="layui-form-label">
+										                <span class="x-red">*</span>状态
+										            </label>
+												<div class="layui-input-inline">
+													<select id="collectror-status" name="status" class="valid">
+														<option value="0" selected>关机</option>
+														<option value="1">开机</option>
+													</select>
+												</div>
+											</div>
+											<div class="layui-form-item">
+												<label for="L_repass" class="layui-form-label">
+                									</label>
+												<button id="collectror-save" class="layui-btn">
+                  									编辑并保存
+              										</button>
+											</div>
+										</div>
+
+									</div>
+									<!--变电站信息 回显 保存-->
+									<div class="layui-tab-item">
+										<div class="x-body">
+											<div class="layui-form-item">
+												<label for="username" class="layui-form-label">
+									              <span class="x-red">*</span>变电站Id
+									          </label>
+												<div class="layui-input-inline">
+													<input type="text" id="bdzData-id" name="id" value="" disabled="disabled" lay-verify="id" autocomplete="off" class="layui-input">
+												</div>
+											</div>
+											<div class="layui-form-item">
+												<label for="username" class="layui-form-label">
+								                  <span class="x-red">*</span>变电站名称
+								              </label>
+												<div class="layui-input-inline">
+													<input type="text" id="bdzData-name" name="name" value="" required lay-verify="name" autocomplete="off" class="layui-input">
+												</div>
+											</div>
+											<div class="layui-form-item">
+												<label for="username" class="layui-form-label">
+								                  <span class="x-red">*</span>详细地址
+								              </label>
+												<div class="layui-input-inline">
+													<input type="text" id="bdzData-address" name="address" value="" required lay-verify="address" autocomplete="off" class="layui-input">
+												</div>
+											</div>
+											<div class="layui-form-item">
+												<label for="username" class="layui-form-label">
+								                  <span class="x-red">*</span>所属市
+								              </label>
+												<div class="layui-input-inline">
+													<select id="bdzData-region" name="region" class="valid">
+														<option value="南昌市">南昌市</option>
+														<option value="抚州市">抚州市</option>
+													</select>
+												</div>
+											</div>
+											<div class="layui-form-item">
+												<label for="username" class="layui-form-label">
+								                  <span class="x-red">*</span>所属省
+								              </label>
+												<div class="layui-input-inline">
+													<select id="bdzData-province" name="province" class="valid">
+														<option value="江西省">江西省</option>
+														<option value="山西省">山西省</option>
+													</select>
+												</div>
+											</div>
+											<!--经纬度显示-->
+											<!--<div class="layui-form-item">
+												<label for="username" class="layui-form-label">
+									                  <span class="x-green">*</span>经度
+									              </label>
+												<div class="layui-input-inline">
+													<input type="text" id="bdzData-lon" name="lon" value="" required lay-verify="address" autocomplete="off" class="layui-input">
+												</div>
+											</div>
+											
+											<div class="layui-form-item">
+												<label for="username" class="layui-form-label">
+									                  <span class="x-green">*</span>纬度
+									              </label>
+												<div class="layui-input-inline">
+													<input type="text" id="bdzData-lat" name="lat" value="" required lay-verify="address" autocomplete="off" class="layui-input">
+												</div>
+											</div>-->
+											<div class="layui-form-item">
+												<label for="L_repass" class="layui-form-label">
+            								  </label>
+												<button id="bdz-save" class="layui-btn" lay-filter="add" lay-submit="">
+									                  编辑并保存
+									        </button>
+											</div>
+										</div>
+									</div>
+									<div class="layui-tab-item">内容6</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+
+		</div>
+
+	</body>
+
+</html>

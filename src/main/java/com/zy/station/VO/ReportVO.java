@@ -14,7 +14,8 @@ public class ReportVO {
     @JsonProperty("deviceId")
     private Integer deviceId;
     /** 设备编号id. */
-
+    @JsonProperty("stationId")
+    private Integer stationId;
     @JsonProperty("reportTime")
     private Date reportTime;
     /** 上报信息的时间. */
@@ -42,6 +43,19 @@ public class ReportVO {
     @JsonProperty("humidEnv")
     private Integer humidEnv;
     /** 环境湿度. */
+    @JsonProperty("tempe_1")
+    private Integer tempe_1;
+    @JsonProperty("tempe_2")
+    private Integer tempe_2;
+    @JsonProperty("tempe_3")
+    private Integer tempe_3;
+    @JsonProperty("tempe_4")
+    private Integer tempe_4;
 
-
+    @JsonProperty("onload")
+    private Integer onload;
+    @JsonProperty("error_0")
+    private Integer error_0;
+    @JsonProperty("error_1")
+    private Integer error_1;
 }
